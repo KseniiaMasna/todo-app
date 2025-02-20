@@ -1,0 +1,16 @@
+header {
+    height: fit-content;
+    padding: 1.5rem;
+    background-color: rgb(226, 231, 231);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+h1 {
+    text-align: center;
+    border: 1px dashed black;    
+    padding: 0.5rem;
+}
