@@ -1,0 +1,18 @@
+fieldset{ 
+    max-width: 40%;
+    margin: auto;
+    border: 1px dashed rgb(159, 177, 177);
+    border-radius: 8px;  
+    padding: 0.5rem; 
+}
+
+.todo-entrie{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;    
+}
+
+.todo-list input{
+    max-width: fit-content;
+}
