@@ -29,7 +29,7 @@ button{
     border-radius: 8px;
 }
 
-ul{ 
+fieldset{ 
     max-width: 40%;
     margin: auto;
     border: 1px dashed rgb(159, 177, 177);
@@ -37,8 +37,13 @@ ul{
     padding: 0.5rem; 
 }
 
-li{
-    list-style: inside;
-    padding: 0.5rem;
-    list-style: none;
+.todo-entrie{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;    
+}
+
+.todo-list input{
+    max-width: fit-content;
 }

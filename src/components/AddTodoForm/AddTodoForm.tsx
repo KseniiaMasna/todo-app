@@ -21,7 +21,11 @@ export const AddTodoForm = () => {
     }
 
     const todoListEntries = todoList.map(todoEntrie => (
-        <li key={todoEntrie.id}>{todoEntrie.text}</li>
+        // <li key={todoEntrie.id}>{todoEntrie.text}</li>
+        <div className='todo-entrie'>
+            <input type="checkbox" id={todoEntrie.id} name={todoEntrie.text} />
+            <label for={todoEntrie.id}>{todoEntrie.text}</label>
+        </div>
     ))
 
     return (
@@ -33,10 +37,12 @@ export const AddTodoForm = () => {
                 />
                 <button type="submit">Add</button>
             </form>
-            <ul>
-                {todoListEntries}
-            </ul>
+            {
+                todoList.length > 0 &&
+                <fieldset className='todo-list'>
+                    {todoListEntries}
+                </fieldset>
+            }
         </main>
-
     )
 }
