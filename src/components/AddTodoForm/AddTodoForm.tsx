@@ -6,25 +6,52 @@ import { useState } from "react"
 interface TodoEntrie {
     readonly id: string
     text: string
+    done: boolean
 }
+
+const exampleTodoList: TodoEntrie[] = [
+    {
+      id: nanoid(),
+      text: "Buy groceries",
+      done: false
+    },
+    {
+      id: nanoid(),
+      text: "Read a book",
+      done: true
+    },
+    {
+      id: nanoid(),
+      text: "Write some code",
+      done: false
+    }
+  ];
 
 
 export const AddTodoForm = () => {
-    const [todoList, setTodoList] = useState<TodoEntrie[]>([])
+    const [todoList, setTodoList] = useState<TodoEntrie[]>(exampleTodoList)
 
     const addTodo = (formData) => {
         const newTodo:TodoEntrie = {
-            id: nanoid(),
-            text: formData.get('todo')
+            id: nanoid(), 
+            text: formData.get('todo'),
+            done: false
         }
         setTodoList(prevTodoList => [...prevTodoList, newTodo])
     }
 
-    const todoListEntries = todoList.map(todoEntrie => (
-        // <li key={todoEntrie.id}>{todoEntrie.text}</li>
-        <div className='todo-entrie'>
-            <input type="checkbox" id={todoEntrie.id} name={todoEntrie.text} />
-            <label for={todoEntrie.id}>{todoEntrie.text}</label>
+    const toggleCheckBox = (id: string) => {
+        setTodoList(prevTodoList => prevTodoList.map(todo => 
+            todo.id === id 
+                ? {...todo, done: !todo.done}
+                : todo
+        ))
+    }
+
+    const todoListEntries = todoList.map(todoEntrie => (        
+        <div className='todo-entrie' key={todoEntrie.id}>
+            <input type="checkbox" id={todoEntrie.id} name={todoEntrie.text} checked={todoEntrie.done} onClick={() => toggleCheckBox(todoEntrie.id)}/>
+            <label htmlFor={todoEntrie.id}>{todoEntrie.text}</label>
         </div>
     ))
 
@@ -34,6 +61,7 @@ export const AddTodoForm = () => {
                 <input 
                     type="text" 
                     name="todo"
+                    required
                 />
                 <button type="submit">Add</button>
             </form>
