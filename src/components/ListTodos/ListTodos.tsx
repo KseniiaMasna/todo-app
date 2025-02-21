@@ -1,6 +1,7 @@
 import './ListTodos.css'
 import React from "react"
 import { IconCloseButton } from '../primitive ui/IconCloseButton'
+import { Counter } from '../Counter/Counter'
 
 export const ListTodos = (props) => {
 
@@ -13,6 +14,7 @@ export const ListTodos = (props) => {
                     <IconCloseButton onClick={() => props.onClick(todoEntrie.id)}/>
                 </div>
             ))}
+            <Counter amountOfDoneTodo={props.amountOfDoneTodo} totalAmountTodo={props.totalAmountTodo}/>
         </fieldset>
     )
 }

@@ -71,7 +71,13 @@ function App() {
       <main>
         <AddTodoForm addTodo={addTodo}/>
         {
-            todoList.length > 0 && <ListTodos todoList={todoList} onChange={toggleCheckBox} onClick={deleteTodo}/>
+            todoList.length > 0 && 
+              <ListTodos 
+                todoList={todoList} 
+                onChange={toggleCheckBox} 
+                onClick={deleteTodo} 
+                amountOfDoneTodo={todoList.filter(todo => todo.done).length} 
+                totalAmountTodo={todoList.length}/>
         }
       </main>
     </>
