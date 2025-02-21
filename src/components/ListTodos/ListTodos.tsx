@@ -1,5 +1,6 @@
 import './ListTodos.css'
 import React from "react"
+import { IconCloseButton } from '../primitive ui/IconCloseButton'
 
 export const ListTodos = (props) => {
 
@@ -7,8 +8,9 @@ export const ListTodos = (props) => {
         <fieldset className='todo-list'>
             {props.todoList.map(todoEntrie => (        
                 <div className='todo-entrie' key={todoEntrie.id}>
-                     <input type="checkbox" id={todoEntrie.id} name={todoEntrie.text} checked={todoEntrie.done} onChange={() => props.onClick(todoEntrie.id)}/>
+                    <input type="checkbox" id={todoEntrie.id} name={todoEntrie.text} checked={todoEntrie.done} onChange={() => props.onChange(todoEntrie.id)}/>
                     <label htmlFor={todoEntrie.id}>{todoEntrie.text}</label>
+                    <IconCloseButton onClick={() => props.onClick(todoEntrie.id)}/>
                 </div>
             ))}
         </fieldset>

@@ -6,7 +6,7 @@ import { Heading } from './components/Heading/Heading'
 import { AddTodoForm } from './components/AddTodoForm/AddTodoForm'
 import { ListTodos } from './components/ListTodos/ListTodos'
 
-const LSKEY = "MyTodoApp";
+
 interface TodoEntrie {
     readonly id: string
     text: string
@@ -51,13 +51,27 @@ function App() {
     )
   }
 
+  const deleteTodo = (id: string) => {
+    setTodoList(prevTodoList => {
+      const index = prevTodoList.findIndex(todo => todo.id === id)
+      let updatedList
+      if (index !== -1) {
+        updatedList = [...prevTodoList.slice(0, index), ...prevTodoList.slice(index + 1)]
+      } else {
+        updatedList = prevTodoList
+      }
+      localStorage.setItem("todos", JSON.stringify(updatedList))
+      return updatedList
+    })
+  }
+
   return (
     <>
       <Heading appName="To Do.."/>
       <main>
         <AddTodoForm addTodo={addTodo}/>
         {
-            todoList.length > 0 && <ListTodos todoList={todoList} onClick={toggleCheckBox}/>
+            todoList.length > 0 && <ListTodos todoList={todoList} onChange={toggleCheckBox} onClick={deleteTodo}/>
         }
       </main>
     </>
